@@ -1,0 +1,130 @@
+public class Main
+{
+    public static class Node{
+        int data;
+        Node next;
+        Node(int data){
+            this.data=data;
+        }
+    }
+    public static class linkedlist{
+        Node head=null;
+        Node tail=null;
+        int size=0;
+        void insertatend(int val)
+        {
+            Node temp=new Node(val);
+            if(head==null){
+                head=temp;
+            }else{
+                tail.next=temp;
+            }
+            tail=temp;
+            size++;
+        }
+        //display the linkedlist
+        
+        void display()
+        {
+            Node temp=head;
+            while(temp!=null)
+            {
+                System.out.print(temp.data+" ");
+                temp=temp.next;
+            }
+            System.out.println();
+        }
+        void insetatbeg(int val)
+        {
+            Node temp=new Node(val);
+            if(head==null)
+            {
+                head=tail=temp;
+            }else{
+                temp.next=head;
+                head=temp;
+            }
+            size++;
+        }
+        
+        //insertatindex of linkedlist
+        void insertatindex(int idx,int val)
+        {
+            Node t=new Node(val);
+            Node temp=head;
+            if(idx==size)
+            {
+                insertatend(val);
+                return;
+            }if(idx==0)
+            {
+                insetatbeg(val);
+                return;
+            }
+            for(int i=1;i<=idx-1;i++)
+            {
+                temp=temp.next;
+            }
+            t.next=temp.next;
+            temp.next=t;
+            size++;
+        }
+        
+        // get the element
+        int get(int idx)
+        {
+            Node temp=head;
+            for(int i=1;i<=idx;i++)
+            {
+                temp=temp.next;
+            }
+            return temp.data;
+        }
+        
+        // delete the element
+        void delete(int idx)
+        {
+         Node temp=head;
+            if(idx==0)
+            {
+                head=head.next;
+                size--;
+                return;
+            }
+            for(int i=1;i<idx;i++)
+            {
+                temp=temp.next;
+            }
+            temp.next=temp.next.next;
+           tail=temp;
+            size--;
+        }
+        
+    }
+	public static void main(String[] args) {
+		linkedlist ll=new linkedlist();
+		//insertatend of linkedlist
+		ll.insertatend(2);
+		ll.insertatend(3);
+		ll.display();
+		//insertatbeginning of linkedlist
+		ll.insetatbeg(4);
+		ll.insetatbeg(5);
+		ll.display();
+		//insertatany index of linkedlist
+		ll.insertatindex(2,7);
+	
+		ll.display();
+		ll.insertatindex(4,6);
+		ll.display();
+	    //get the element in the linkedlist
+	    System.out.println(ll.get(2));
+	    
+	    //delete the element in the linkedlist
+	    ll.delete(0);
+	    ll.display();
+	    System.out.print(ll.tail.data);
+	    
+	    
+	}
+}

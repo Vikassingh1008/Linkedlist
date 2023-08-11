@@ -11,3 +11,30 @@
        return head;
 
     }
+
+
+////second approach
+
+
+public ListNode deleteMiddle(ListNode head) {
+       ListNode temp=head;
+       int size=0;
+       while(temp!=null)
+       {
+           temp=temp.next;
+           size++;
+       }
+       int len=size/2;
+       if(len==0)
+       {
+           return null;
+       }
+       temp=head;
+       for(int i=1;i<len;i++)
+       {
+           temp=temp.next;
+       }
+       temp.next=temp.next.next;
+       return head;
+
+    }

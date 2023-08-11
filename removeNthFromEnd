@@ -1,4 +1,6 @@
- public ListNode removeNthFromEnd(ListNode head, int n) {
+//////////////////////////////////////////////////first approach
+
+public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode temp=head;
         int size=0;
         while(temp!=null)
@@ -20,3 +22,28 @@
          temp1.next=temp1.next.next;
          return head;
     }
+
+
+/////////////////////////////////second approach
+
+public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode fast=head;
+        ListNode slow=head;
+        for(int i=1;i<=n;i++)
+        {
+            fast=fast.next;
+        }
+        if(fast==null)
+        {
+            head=head.next;
+            return head;
+        }
+        while(fast.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next;
+        }
+        slow.next=slow.next.next;
+        return head;
+    }
+}
